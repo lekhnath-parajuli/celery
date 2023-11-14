@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- loader -->
+    <div id="loader" class="flex justify-center h-[100vh] w-[100vw]" style="position: absolute; z-index: 1;">
+        <div class="flex items-center space-x-2">
+            <div aria-label="Loading..." role="status">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"
+                    class="animate-spin w-4 h-4 stroke-slate-500">
+                    <path
+                        d="M12 3v3m6.366-.366-2.12 2.12M21 12h-3m.366 6.366-2.12-2.12M12 21v-3m-6.366.366 2.12-2.12M3 12h3m-.366-6.366 2.12 2.12">
+                    </path>
+                </svg>
+            </div>
+            <span class="text-xs font-medium text-slate-500">Loading...</span>
+        </div>
+    </div>
+
+    <!-- users data -->
+    <div id="user-container" class="flex flex-center invisible">
+        <table id="talbe" class="table-auto">
+            <thead id="user-headings">
+                <tr>
+                    <th>Name</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            <tbody id="users">
+            </tbody>
+        </table>
+    </div>
+
+    <script type="application/javascript">
+        function fillUserDetails(users) {
+            return users.map((user) => {
+                return `
+                <tr>
+                    <td> ${user.name} </td>
+                    <td> ${user.createdAt} </td>
+                </tr>
+                `;
+            });
+        }
+
+        $("#users").load(
+            "https://6552de2f5449cfda0f2de0bd.mockapi.io/session/1/users",
+            function (response, status, xhr) {
+                // to show user required is in progress
+                $("#loader").detach();
+                // fill the dom with users data
+                $("#users").html(fillUserDetails(JSON.parse(response)));
+                // to reduce flicker
+                $("#user-container").removeClass("invisible");
+            },
+        );
+    </script>
+</body>
+</html>
