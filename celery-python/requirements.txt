@@ -1,0 +1,2 @@
+yaaredis==3.0.0
+celery==5.3.6
