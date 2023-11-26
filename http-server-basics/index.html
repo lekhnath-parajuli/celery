@@ -25,14 +25,15 @@
 
         <div id="form-container">
             <div id="user-container" class="w-full flex flex-col gap-y-12 invisible">
-                <form class="">
+                <form id="user-form">
                     <div class="flex items-center border-b border-teal-500 py-2">
                         <input
+                            id="user-name"
                             class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                             type="text" placeholder="Jane Doe" aria-label="Full name">
                         <button
                             class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-                            type="button">
+                            type="submit">
                             Add User
                         </button>
                         <button
@@ -58,6 +59,18 @@
 
     <script type="application/javascript">
         loadUsers({loader: '#loader', userContainer: '#user-container', users: '#users'});
+
+        $('#user-form').submit(function (event) {
+            event.preventDefault();
+
+            const url = "https://6552de2f5449cfda0f2de0bd.mockapi.io/session/1/users";
+            const data = {name: $("#user-name").val()};
+            function onsuccess() {loadUsers({loader: '#loader', userContainer: '#user-container', users: '#users'})};
+            const onerror = function onerror() {};
+            $.post({url: url, data: data, success: onsuccess, error: onerror});
+
+            event.target.reset();
+        });
     </script>
 </body>
 

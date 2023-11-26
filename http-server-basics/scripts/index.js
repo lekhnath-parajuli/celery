@@ -5,7 +5,7 @@ function fillUserDetails(users) {
         return `
         <tr>
             <td> ${user.name} </td>
-            <td> ${user.createdAt} </td>
+            <td> ${(new Date(user.createdAt)).toDateString()} </td>
         </tr>
         `;
     });
