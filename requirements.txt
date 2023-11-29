@@ -2,3 +2,4 @@ yaaredis==3.0.0
 celery==5.3.6
 kombu==5.3.4
 redis==3.5.3
+flower==2.0.1
