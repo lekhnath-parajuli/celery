@@ -31,6 +31,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: ./start-flower.sh
+    ports:
+      - "5555:5555"
     volumes:
       - ./data/celery:/data
     depends_on:
