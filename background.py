@@ -1,5 +1,5 @@
 from celery import Celery
-import background_tasks
+import tasks as background_tasks
 
 app = Celery("sidekick", broker="redis://redis:6379/0", backend="rpc://")
 app.config_from_object("celery_config")
