@@ -3,7 +3,6 @@ import background_tasks
 
 app = Celery("sidekick", broker="redis://redis:6379/0", backend="rpc://")
 app.config_from_object("celery_config")
-worker_queues = ','.join([queue.name for queue in app.conf.task_queues])
 
 # tasks
 hello = app.task(background_tasks.hello, queue="hello")
