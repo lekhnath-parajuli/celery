@@ -1,10 +1,12 @@
+from Config import config
 from celery import Celery
+
 from tasks.hi import hi
 from tasks.bye import bye
 from tasks.hello import hello
 from tasks.welcome import welcome
 
-app = Celery("sidekick", broker="redis://redis:6379/0", backend="rpc://")
+app = Celery("sidekick", broker=config.redis_url, backend="rpc://")
 app.config_from_object("celery_config")
 
 # tasks

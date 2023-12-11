@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      DB: "celery"
+      DB_USER: "celery"
+      DB_PASSWORD: "celery"
+
   redis:
     container_name: redis
     image: redis:latest
@@ -16,6 +24,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      REDIS_URL: redis://db:6379/0
     command: ./start-workers.sh
     volumes:
       - ./data/celery:/data
@@ -30,6 +40,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      REDIS_URL: redis://db:6379/0
     command: ./start-flower.sh
     ports:
       - "5555:5555"
