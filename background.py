@@ -17,4 +17,4 @@ welcome = app.task(welcome, queue="welcome")
 
 
 if __name__ == "__main__":
-    [(hi.delay(2), hello.delay(2), bye.delay(2), welcome.delay(2)) for i in range(1000)]
+    [(hi.delay(2), hello.delay(2), bye.delay(2), welcome.delay(2)) for i in range(500)]
