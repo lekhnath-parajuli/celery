@@ -6,8 +6,14 @@ from tasks.bye import bye
 from tasks.hello import hello
 from tasks.welcome import welcome
 
+
 app = Celery("sidekick", broker=config.redis_url, backend="rpc://")
 app.config_from_object("celery_config")
+
+
+# app.conf.beat_schedule = {
+#     "hi-message": {"task": "tasks.hi.hi", "schedule": 5, "args": (2,)},
+# }
 
 # tasks
 hello = app.task(hello, queue="hello")

@@ -1,0 +1,2 @@
+class StoreManager:
+    conn: str
