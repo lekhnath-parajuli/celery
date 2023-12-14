@@ -6,7 +6,8 @@ load_dotenv()
 
 class Config(BaseSettings):
     app_name: str = "celery"
-    redis_url: str = "redis://localhost:6379/0"
+    redis_broker_url: str = "redis://localhost:6379/15"
+    redis_beat_url: str = "redis://localhost:6379/14"
 
 
 config = Config()

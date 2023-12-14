@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  db:
-    container_name: db
-    image: postgres
-    restart: always
-    environment:
-      DB: celery
-      DB_USER: celery
-      DB_PASSWORD: celery
-    ports:
-      - 5432:5432
-
   redis:
     container_name: redis
     image: redis:latest
