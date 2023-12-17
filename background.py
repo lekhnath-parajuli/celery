@@ -6,7 +6,7 @@ from tasks.bye import bye
 from tasks.hello import hello
 from tasks.welcome import welcome
 
-app = Celery("sidekick", broker=config.redis_url, backend="rpc://")
+app = Celery("sidekick", broker=config.redis_broker_url, backend="rpc://")
 app.config_from_object("celery_config")
 
 # tasks
