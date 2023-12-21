@@ -28,7 +28,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      REDIS_URL: redis://redis:6379/0
+      REDIS_BROKER_URL: redis://redis:6379/15
+      REDIS_BEAT_URL: redis://redis:6379/14
     command: ./start-workers.sh
     volumes:
       - ./data/celery:/data
@@ -44,7 +45,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      REDIS_URL: redis://redis:6379/0
+      REDIS_BROKER_URL: redis://redis:6379/15
+      REDIS_BEAT_URL: redis://redis:6379/14
     command: ./start-flower.sh
     ports:
       - 5555:5555
